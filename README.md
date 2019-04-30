@@ -1,4 +1,4 @@
-# hh-supejob
+# devman-bot
 
 ## Описание
 Бот для обучающихся на [девмане](https://dvmn.org/modules/). Высылает уведомление в телеграм,
@@ -46,4 +46,4 @@ python3 devman_bot.py
 Найти бота в телеграме **_@devvm_bot_**
 
 ## Пример сообщения :
-![Alt Text](http://ipic.su/img/img7/fs/Screenshot_20190430-173842.1556635502.png)
+![Alt Text](http://ipic.su/img/img7/fs/Screenshot_20190430-173842.1556635645.png)
