@@ -20,10 +20,10 @@ class Message:
 
 
 class BotDevman:
-    def __init__(self, secret_data, message=None):
-        self.bot = telegram.Bot(secret_data.token_bot)
-        self.secret_data = secret_data
+    def __init__(self, secret_data=None, message=None):
+        self.secret_data = SecretData() or secret_data
         self.message = Message() or message
+        self.bot = telegram.Bot(self.secret_data.token_bot)
 
     def compose_message(self, tasks):
         for task in tasks:
@@ -66,8 +66,7 @@ class BotDevman:
 
 def main():
     load_dotenv()
-    secret_data = SecretData()
-    BotDevman(secret_data).listen_devman()
+    BotDevman().listen_devman()
 
 
 if __name__ == '__main__':
