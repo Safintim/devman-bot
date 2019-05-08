@@ -25,6 +25,7 @@ def listen_devman(api_url, token_devman, params):
         'Authorization': 'Token {}'.format(token_devman)
     }
     response = requests.get(api_url, headers=headers_devman, params=params)
+    response.raise_for_status()
     response_json = response.json()
 
     if 'timestamp_to_request' in response_json:
@@ -46,7 +47,9 @@ def main():
             if response:
                 bot.send_message(chat_id=chat_id, text=compose_message(response))
             params['timestamp'] = timestamp
-        except (requests.exceptions.ReadTimeout, requests.exceptions.ConnectionError) as e:
+        except (requests.exceptions.ReadTimeout,
+                requests.exceptions.ConnectionError,
+                requests.exceptions.HTTPError) as e:
             print(e)
 
 
