@@ -25,10 +25,12 @@ def listen_devman(api_url, token_devman, params):
         'Authorization': 'Token {}'.format(token_devman)
     }
     response = requests.get(api_url, headers=headers_devman, params=params)
-    if 'timestamp_to_request' in response.json():
-        return response.json()['timestamp_to_request'], None
-    elif 'last_attempt_timestamp' in response.json():
-        return response.json()['last_attempt_timestamp'], response.json()
+    response_json = response.json()
+
+    if 'timestamp_to_request' in response_json:
+        return response_json['timestamp_to_request'], None
+    elif 'last_attempt_timestamp' in response_json:
+        return response_json['last_attempt_timestamp'], response_json
 
 
 def main():
