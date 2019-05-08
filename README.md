@@ -31,6 +31,14 @@ sudo apt-get install python3-pip
 https://github.com/Safintim/devman-bot.git
 pip3 install -r requirements.txt
 ```
+3. Персональные настройки:
+
+Скрипт берет настройки из файла .env, который содержит токен девмана, токен чат-бота, и номер чата в таком виде:
+```sh
+TOKEN_DEVMAN=your_token
+TOKEN_TELEGRAM=your_token
+CHAT_ID=your_chat_id
+```
 
 ## Зависимости
 * *python-dotenv==0.10.1*
