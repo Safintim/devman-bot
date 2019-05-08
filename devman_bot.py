@@ -46,7 +46,7 @@ def main():
             if response:
                 bot.send_message(chat_id=chat_id, text=compose_message(response))
             params['timestamp'] = timestamp
-        except requests.exceptions.ReadTimeout as e:
+        except (requests.exceptions.ReadTimeout, requests.exceptions.ConnectionError) as e:
             print(e)
 
 
