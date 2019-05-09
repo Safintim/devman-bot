@@ -21,20 +21,19 @@ class Message:
         self.bottom = bottom or ''
 
 
-# class LogsHandler(logging.Handler):
-#     def emit(self, record):
-#         log_entry = self.format(record)
-
 class BotLogger:
     def __init__(self, secret_data=None):
-        self.secret_data = SecretData() or secret_data()
+        self.secret_data = SecretData() or secret_data
         self.bot = telegram.Bot(self.secret_data.token_logger_bot)
+
+    def send_report(self, msg):
+        self.bot.send_message(chat_id=self.secret_data.chat_id, text=msg)
 
 
 class BotDevman:
-    def __init__(self, secret_data=None, message=None):
-        self.secret_data = SecretData() or secret_data()
-        self.message = Message() or message()
+    def __init__(self, logs_handler=None, secret_data=None, message=None):
+        self.secret_data = secret_data or SecretData()
+        self.message = message or Message()
         self.bot = telegram.Bot(self.secret_data.token_devman_bot)
 
     def compose_message(self, tasks):
@@ -72,15 +71,14 @@ class BotDevman:
                                           text=self.compose_message(response['new_attempts']))
                 params['timestamp'] = timestamp
             except (requests.exceptions.ReadTimeout, requests.exceptions.ConnectionError) as e:
-                print(e)  # запись в лог
-            except requests.exceptions.HTTPError as e:
-                print(e)  # запись в лог
+                continue
+            except requests.exceptions.HTTPError:
                 break
 
 
 def main():
-    load_dotenv()
-    BotDevman().listen_devman()
+    # load_dotenv()
+    BotDevman().run()
 
 
 if __name__ == '__main__':
