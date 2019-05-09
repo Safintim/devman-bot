@@ -1,4 +1,5 @@
 import os
+import logging
 import requests
 import telegram
 from dotenv import load_dotenv
@@ -54,6 +55,7 @@ class BotDevman:
         params = {}
         while True:
             try:
+                logging.warning('Бот запущен')
                 timestamp, response = self.request_to_devman(params)
                 if response:
                     self.bot.send_message(chat_id=self.secret_data.chat_id,
