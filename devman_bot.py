@@ -59,9 +59,11 @@ class BotDevman:
                     self.bot.send_message(chat_id=self.secret_data.chat_id,
                                           text=self.compose_message(response['new_attempts']))
                 params['timestamp'] = timestamp
-            except (requests.exceptions.ReadTimeout, requests.exceptions.ConnectionError,
-                    requests.exceptions.HTTPError) as e:
-                print(e)
+            except (requests.exceptions.ReadTimeout, requests.exceptions.ConnectionError) as e:
+                print(e)  # запись в лог
+            except requests.exceptions.HTTPError as e:
+                print(e)  # запись в лог
+                break
 
 
 def main():
