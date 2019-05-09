@@ -45,6 +45,7 @@ class BotDevman:
     def __init__(self, logs_handler=None, secret_data=None, message=None):
         self.secret_data = secret_data or SecretData()
         self.message = message or Message()
+        self.logger = self.create_logger(logs_handler)
         self.bot = telegram.Bot(self.secret_data.token_devman_bot)
 
     def compose_message(self, tasks):
@@ -56,6 +57,15 @@ class BotDevman:
                 msg += self.message.is_negative_false
             msg += self.message.bottom
             return msg
+
+    @staticmethod
+    def create_logger(logs_handler):
+        if logs_handler:
+            logger = logging.getLogger('Bot Logger')
+            handler = logs_handler()
+            handler.logging.Formatter('%{message}')
+            logger.addHandler(handler)
+            return logger
 
     def request_to_devman(self, params):
         api_url = 'https://dvmn.org/api/long_polling/'
@@ -89,7 +99,7 @@ class BotDevman:
 
 def main():
     # load_dotenv()
-    BotDevman().run()
+    BotDevman(LogsHandler).run()
 
 
 if __name__ == '__main__':
