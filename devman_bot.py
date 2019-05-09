@@ -7,9 +7,9 @@ from dotenv import load_dotenv
 
 class SecretData:
     def __init__(self):
-        self.token_devman = os.environ('TOKEN_DEVMAN')
-        self.token_bot = os.environ('TOKEN_TELEGRAM')
-        self.chat_id = os.environ('CHAT_ID')
+        self.token_devman = os.environ['TOKEN_DEVMAN']
+        self.token_bot = os.environ['TOKEN_TELEGRAM']
+        self.chat_id = os.environ['CHAT_ID']
 
 
 class Message:
