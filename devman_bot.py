@@ -63,7 +63,7 @@ class BotDevman:
         if logs_handler:
             logger = logging.getLogger('Bot Logger')
             handler = logs_handler()
-            handler.setFormatter(logging.Formatter('%(message)'))
+            handler.setFormatter(logging.Formatter('%(message)s'))
             logger.addHandler(handler)
             return logger
 
