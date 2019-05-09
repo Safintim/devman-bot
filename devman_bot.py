@@ -8,7 +8,8 @@ from dotenv import load_dotenv
 class SecretData:
     def __init__(self):
         self.token_devman = os.environ['TOKEN_DEVMAN']
-        self.token_bot = os.environ['TOKEN_TELEGRAM']
+        self.token_devman_bot = os.environ['TOKEN_DEVMAN_BOT']
+        self.token_logger_bot = os.environ['TOKEN_LOGGER_BOT']
         self.chat_id = os.environ['CHAT_ID']
 
 
@@ -20,11 +21,21 @@ class Message:
         self.bottom = bottom or ''
 
 
+# class LogsHandler(logging.Handler):
+#     def emit(self, record):
+#         log_entry = self.format(record)
+
+class BotLogger:
+    def __init__(self, secret_data=None):
+        self.secret_data = SecretData() or secret_data()
+        self.bot = telegram.Bot(self.secret_data.token_logger_bot)
+
+
 class BotDevman:
     def __init__(self, secret_data=None, message=None):
-        self.secret_data = SecretData() or secret_data
-        self.message = Message() or message
-        self.bot = telegram.Bot(self.secret_data.token_bot)
+        self.secret_data = SecretData() or secret_data()
+        self.message = Message() or message()
+        self.bot = telegram.Bot(self.secret_data.token_devman_bot)
 
     def compose_message(self, tasks):
         for task in tasks:
@@ -55,7 +66,6 @@ class BotDevman:
         params = {}
         while True:
             try:
-                logging.warning('Бот запущен')
                 timestamp, response = self.request_to_devman(params)
                 if response:
                     self.bot.send_message(chat_id=self.secret_data.chat_id,
