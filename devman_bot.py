@@ -96,6 +96,15 @@ class BotDevman:
             except requests.exceptions.HTTPError:
                 break
 
+    def run(self):
+        while True:
+            try:
+                self.logger.info('Бот запущен')
+                self.listen_devman()
+            except Exception as e:
+                self.logger.info('Бот упал')
+                self.logger.error(e, exc_info=True)
+
 
 def main():
     # load_dotenv()
