@@ -43,12 +43,12 @@ class BotDevman:
 
         response = requests.get(api_url, headers=headers_devman, params=params)
         response.raise_for_status()
-        response_json = response.json()
+        data = response.json()
 
-        if 'timestamp_to_request' in response_json:
-            return response_json['timestamp_to_request'], None
-        elif 'last_attempt_timestamp' in response_json:
-            return response_json['last_attempt_timestamp'], response_json
+        if 'timestamp_to_request' in data:
+            return data['timestamp_to_request'], None
+        elif 'last_attempt_timestamp' in data:
+            return data['last_attempt_timestamp'], data
 
     def listen_devman(self):
         params = {}
