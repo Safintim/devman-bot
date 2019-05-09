@@ -21,6 +21,17 @@ class Message:
         self.bottom = bottom or ''
 
 
+class LogsHandler(logging.Handler):
+
+    def __init__(self,):
+        super().__init__()
+        self.bot = BotLogger()
+
+    def emit(self, record):
+        log_entry = self.format(record)
+        self.bot.send_report(log_entry)
+
+
 class BotLogger:
     def __init__(self, secret_data=None):
         self.secret_data = SecretData() or secret_data
