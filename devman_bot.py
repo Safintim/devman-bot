@@ -34,7 +34,7 @@ class LogsHandler(logging.Handler):
 
 class BotLogger:
     def __init__(self, secret_data=None):
-        self.secret_data = SecretData() or secret_data
+        self.secret_data = secret_data or SecretData()
         self.bot = telegram.Bot(self.secret_data.token_logger_bot)
 
     def send_report(self, msg):
