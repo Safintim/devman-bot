@@ -33,10 +33,11 @@ pip3 install -r requirements.txt
 ```
 3. Персональные настройки:
 
-Скрипт берет настройки из файла .env, который содержит токен девмана, токен чат-бота, и номер чата в таком виде:
+Скрипт берет настройки из файла .env, который содержит токен девмана, токен чат-девман-бота, токен чат-логгер-бота и номер чата в таком виде:
 ```sh
 TOKEN_DEVMAN=your_token
-TOKEN_TELEGRAM=your_token
+TOKEN_DEVMAN_BOT=your_token
+TOKEN_LOGGER_BOT=your_token
 CHAT_ID=your_chat_id
 ```
 
@@ -51,7 +52,16 @@ CHAT_ID=your_chat_id
 python3 devman_bot.py
 ```
 
-Найти бота в телеграме **_@devvm_bot_**
+Найти ботов в телеграме **_@devvm_bot_**, **_@devmanlogging_bot_**
+
+## Деплой на Heroku:
+1. Создать приложение на Heroku.
+2. Привязать аккаунт к Github.
+    * файл requirements.txt содержит зависимости проекта.
+    * Procfile - файл запуска, одна строка "_bot: python3 devman_bot.py_"
+3. Задеплоить через Github.
+4. Создать Config Vars. Все переменные окружения из .env файла записать в Config Vars. В коде вместо os.getenv('var')
+использовать os.environ['var']
 
 Есть возможность поменять текст уведомления. Используйте класс Message. В Message.header должны быть указаны места для
 вставки названия урока и ссылки на сам урок. Данные подставятся автоматически с помощью метода строк _format_
