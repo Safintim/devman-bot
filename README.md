@@ -89,4 +89,4 @@ class MyHandler(logging.Handler):
 
 ## Пример сообщения :
 ![Alt Text](http://ipic.su/img/img7/fs/Screenshot_20190430-173842.1556635709.png)
-![Alt Text](http://ipic.su/img/img7/fs/Screenshot_20190510-121011_2.1557479625.png)
+![Alt Text](http://ipic.su/img/img7/fs/Screenshot_20190510-121011_2.1557479765.png)
