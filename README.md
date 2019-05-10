@@ -67,12 +67,26 @@ python3 devman_bot.py
 Есть возможность поменять текст уведомления. Используйте класс Message. В Message.header должны быть указаны места для
 вставки названия урока и ссылки на сам урок. Данные подставятся автоматически с помощью метода строк _format_
 
-Есть возможность не использовать логгер-бота или использовать своего, для этого нужно написать свой обработчик логов.
-
 Пример:
 ```python
 header = 'У вас проверили работу "{}"\n\nСсылка на задачу: https://dvmn.org{}\n\n'
 ```
 
+Есть возможность не использовать логгер-бота или использовать своего, для этого нужно написать свой обработчик логов.
+
+Пример:
+```python
+class MyHandler(logging.Handler):
+
+    def __init__(self,):
+        super().__init__()
+        self.bot = MyBotLogger()
+
+    def emit(self, record):
+        log_entry = self.format(record)
+        self.bot.send_report(log_entry)
+```
+
 ## Пример сообщения :
 ![Alt Text](http://ipic.su/img/img7/fs/Screenshot_20190430-173842.1556635709.png)
+![Alt Text](http://ipic.su/img/img7/fs/Screenshot_20190510-121011_2.1557479625.png)
