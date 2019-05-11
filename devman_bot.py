@@ -14,10 +14,10 @@ class SecretData:
 
 
 class Message:
-    def __init__(self, header=None, neg_true=None, neg_false=None, bottom=None):
+    def __init__(self, header=None, positive=None, negative=None, bottom=None):
         self.header = header or 'У вас проверили работу "{}"\n\nСсылка на задачу: https://dvmn.org{}\n\n'
-        self.is_negative_true = neg_true or 'О, да! Красава! Пора приступать к следующей!'
-        self.is_negative_false = neg_false or 'Есть ошибки, пора работать..'
+        self.is_positive = positive or 'О, да! Красава! Пора приступать к следующей!'
+        self.is_negative = negative or 'Есть ошибки, пора работать..'
         self.bottom = bottom or ''
 
 
@@ -52,9 +52,9 @@ class BotDevman:
         for task in tasks:
             msg = self.message.header.format(task['lesson_title'], task['lesson_url'])
             if task['is_negative']:
-                msg += self.message.is_negative_true
+                msg += self.message.is_positive
             else:
-                msg += self.message.is_negative_false
+                msg += self.message.is_negative
             msg += self.message.bottom
             return msg
 
