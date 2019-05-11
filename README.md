@@ -33,18 +33,17 @@ pip3 install -r requirements.txt
 ```
 3. Персональные настройки:
 
-Скрипт берет настройки из файла .env, который содержит токен девмана, токен чат-девман-бота, токен чат-логгер-бота и номер чата в таком виде:
+Скрипт берет настройки из Config Vars, где указаны токен девмана, токен чат-девман-бота, 
+токен чат-логгер-бота и номер чата. Если запускать локально, то создайте .env файл с настройками.
+ Загрузите .env с помощью функции load_dotenv и получите данные с помощью os.getenv.
+ 
+Пример .env файла 
 ```sh
 TOKEN_DEVMAN=your_token
 TOKEN_DEVMAN_BOT=your_token
 TOKEN_LOGGER_BOT=your_token
 CHAT_ID=your_chat_id
 ```
-
-## Зависимости
-* *python-dotenv==0.10.1*
-* *requests==2.21.0*
-* *python-telegram-bot==11.1.0*
 
 ## Как использовать: 
 Запустить скрипт:
@@ -70,6 +69,12 @@ python3 devman_bot.py
 Пример:
 ```python
 header = 'У вас проверили работу "{}"\n\nСсылка на задачу: https://dvmn.org{}\n\n'
+is_positive_result = 'Все замечательно, можно приступать к следующей задаче'
+is_negative_result = 'Преподаватель нашел ошибки..'
+bottom = 'Вперед!'
+message = Messsage(header, is_positive_result, is_negative_result, bottom)
+
+BotDevman(LogsHandler, message=message).run()
 ```
 
 Есть возможность не использовать логгер-бота или использовать своего, для этого нужно написать свой обработчик логов.
