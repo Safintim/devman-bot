@@ -64,8 +64,8 @@ class BotDevman:
             logger = logging.getLogger('Bot Logger')
             handler = logs_handler()
             handler.setFormatter(logging.Formatter('%(message)s'))
-            handler.setLevel(logging.INFO)
             logger.addHandler(handler)
+            logger.setLevel(logging.INFO)
             return logger
 
     def request_to_devman(self, params):
