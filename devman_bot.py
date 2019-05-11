@@ -101,8 +101,7 @@ class BotDevman:
         while True:
             try:
                 self.logger.info('Бот запущен')
-                a = 0/0
-                # self.listen_devman()
+                self.listen_devman()
             except Exception as e:
                 self.logger.warning('Бот упал')
                 self.logger.error(e, exc_info=True)
