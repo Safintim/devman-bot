@@ -61,9 +61,9 @@ class BotDevman:
         for task in tasks:
             msg = self.message.header.format(task['lesson_title'], task['lesson_url'])
             if task['is_negative']:
-                msg += self.message.is_positive
-            else:
                 msg += self.message.is_negative
+            else:
+                msg += self.message.is_positive
             msg += self.message.bottom
             return msg
 
