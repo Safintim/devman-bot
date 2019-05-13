@@ -33,11 +33,9 @@ pip3 install -r requirements.txt
 ```
 3. Персональные настройки:
 
-Скрипт берет настройки из Config Vars, где указаны токен девмана, токен чат-девман-бота, 
-токен чат-логгер-бота и номер чата. Если запускать локально, то создайте .env файл с настройками.
- Загрузите .env с помощью функции load_dotenv и получите данные с помощью os.getenv.
+Скрипт берет настройки из .env файла, где указаны токен девмана, токен чат-девман-бота, 
+токен чат-логгер-бота и номер чата. Создайте файл .env вида:
  
-Пример .env файла 
 ```sh
 TOKEN_DEVMAN=your_token
 TOKEN_DEVMAN_BOT=your_token
@@ -74,7 +72,7 @@ is_negative_result = 'Преподаватель нашел ошибки..'
 bottom = 'Вперед!'
 message = Messsage(header, is_positive_result, is_negative_result, bottom)
 
-BotDevman(LogsHandler, message=message).run()
+BotDevman(logger, message=message).run()
 ```
 
 Есть возможность не использовать логгер-бота или использовать своего, для этого нужно написать свой обработчик логов.
