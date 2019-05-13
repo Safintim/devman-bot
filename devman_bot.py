@@ -7,10 +7,10 @@ from dotenv import load_dotenv
 
 class SecretData:
     def __init__(self):
-        self.token_devman = os.environ['TOKEN_DEVMAN']
-        self.token_devman_bot = os.environ['TOKEN_DEVMAN_BOT']
-        self.token_logger_bot = os.environ['TOKEN_LOGGER_BOT']
-        self.chat_id = os.environ['CHAT_ID']
+        self.token_devman = os.getenv('TOKEN_DEVMAN')
+        self.token_devman_bot = os.getenv('TOKEN_DEVMAN_BOT')
+        self.token_logger_bot = os.getenv('TOKEN_LOGGER_BOT')
+        self.chat_id = os.getenv('CHAT_ID')
 
 
 class Message:
@@ -107,7 +107,7 @@ class BotDevman:
 
 
 def main():
-    # load_dotenv()
+    load_dotenv()
     logger = BotLogger.create_logger(LogsHandler)
     BotDevman(logger=logger).run()
 
