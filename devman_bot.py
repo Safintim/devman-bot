@@ -102,7 +102,7 @@ class BotDevman:
                 self.logger.info('Бот запущен')
                 self.listen_devman()
             except Exception as e:
-                self.logger.warning('Бот упал')
+                self.logger.warning('devman Бот упал')
                 self.logger.error(e, exc_info=True)
 
 
